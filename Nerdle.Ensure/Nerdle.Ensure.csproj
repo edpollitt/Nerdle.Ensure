@@ -43,7 +43,7 @@
     <Compile Include="Ensurable.cs" />
     <Compile Include="EnsurableValue.cs" />
     <Compile Include="Ensure.cs" />
-    <Compile Include="Extensions\SatisfiesExtensions.cs" />
+    <Compile Include="Extensions\NotNullExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
