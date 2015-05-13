@@ -43,6 +43,7 @@
     <Compile Include="Ensurable.cs" />
     <Compile Include="EnsurableValue.cs" />
     <Compile Include="Ensure.cs" />
+    <Compile Include="Extensions\NotExtensions.cs" />
     <Compile Include="Extensions\NotNullExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

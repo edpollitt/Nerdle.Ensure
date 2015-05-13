@@ -37,7 +37,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((object)null).NotNull(x => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.Value((object)null).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
@@ -76,7 +76,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((int?)null).NotNull(x => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.Value((int?)null).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
@@ -119,7 +119,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Argument((object)null).NotNull(x => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.Argument((object)null).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
@@ -158,7 +158,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Argument((int?)null).NotNull(x => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.Argument((int?)null).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
                 }
 

@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="When_creating_an_ensurable_argument.cs" />
     <Compile Include="When_creating_an_ensurable_value.cs" />
+    <Compile Include="When_ensuring_not.cs" />
     <Compile Include="When_ensuring_not_null.cs" />
     <Compile Include="When_generating_default_exceptions.cs" />
     <Compile Include="When_satisfying_a_condition.cs" />
