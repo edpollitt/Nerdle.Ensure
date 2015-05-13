@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nerdle.Ensure", "Nerdle.Ensure\Nerdle.Ensure.csproj", "{C7CE0580-64CD-4475-9205-3F42A367804F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nerdle.Ensure.Tests", "Nerdle.Ensure.Tests\Nerdle.Ensure.Tests.csproj", "{B28598D0-0217-4981-81DF-2EEF4E091AE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7CE0580-64CD-4475-9205-3F42A367804F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7CE0580-64CD-4475-9205-3F42A367804F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7CE0580-64CD-4475-9205-3F42A367804F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7CE0580-64CD-4475-9205-3F42A367804F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28598D0-0217-4981-81DF-2EEF4E091AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28598D0-0217-4981-81DF-2EEF4E091AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28598D0-0217-4981-81DF-2EEF4E091AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28598D0-0217-4981-81DF-2EEF4E091AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
