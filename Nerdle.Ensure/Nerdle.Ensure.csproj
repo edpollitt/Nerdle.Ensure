@@ -43,6 +43,7 @@
     <Compile Include="Ensurable.cs" />
     <Compile Include="EnsurableValue.cs" />
     <Compile Include="Ensure.cs" />
+    <Compile Include="Extensions\BetweenExtensions.cs" />
     <Compile Include="Extensions\GreaterThanExtensions.cs" />
     <Compile Include="Extensions\HasContentExtensions.cs" />
     <Compile Include="Extensions\LessThanExtensions.cs" />
