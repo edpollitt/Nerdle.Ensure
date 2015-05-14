@@ -46,6 +46,7 @@
     <Compile Include="Extensions\BetweenExtensions.cs" />
     <Compile Include="Extensions\GreaterThanExtensions.cs" />
     <Compile Include="Extensions\HasContentExtensions.cs" />
+    <Compile Include="Extensions\InExtensions.cs" />
     <Compile Include="Extensions\LessThanExtensions.cs" />
     <Compile Include="Extensions\MatchesExtensions.cs" />
     <Compile Include="Extensions\NotDefaultExtensions.cs" />

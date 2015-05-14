@@ -57,6 +57,7 @@
     <Compile Include="When_ensuring_between.cs" />
     <Compile Include="When_ensuring_greater_than.cs" />
     <Compile Include="When_ensuring_greater_than_or_equal_to.cs" />
+    <Compile Include="When_ensuring_in.cs" />
     <Compile Include="When_ensuring_less_than.cs" />
     <Compile Include="When_ensuring_less_than_or_equal_to.cs" />
     <Compile Include="When_ensuring_not.cs" />
