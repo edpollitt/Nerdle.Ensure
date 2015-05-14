@@ -24,21 +24,21 @@ namespace Nerdle.Ensure.Tests
                 public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_null()
                 {
                     Action ensuring = () => Ensure.Value((object)null).NotNull();
-                    ensuring.ShouldThrow<InvalidOperationException>().WithMessage("Cannot be null.");
+                    ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Value((object)null).NotNull("foo");
-                    ensuring.ShouldThrow<InvalidOperationException>().WithMessage("foo");
+                    ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Value((object)null).NotNull(_ => new IndexOutOfRangeException("bar"));
-                    ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                    ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
@@ -63,21 +63,21 @@ namespace Nerdle.Ensure.Tests
                 public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_null()
                 {
                     Action ensuring = () => Ensure.Value((int?)null).NotNull();
-                    ensuring.ShouldThrow<InvalidOperationException>().WithMessage("Cannot be null.");
+                    ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Value((int?)null).NotNull("foo");
-                    ensuring.ShouldThrow<InvalidOperationException>().WithMessage("foo");
+                    ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Value((int?)null).NotNull(_ => new IndexOutOfRangeException("bar"));
-                    ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                    ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
@@ -106,35 +106,35 @@ namespace Nerdle.Ensure.Tests
                 public void An_ArgumentNullException_is_thrown_by_default_if_the_argument_is_null()
                 {
                     Action ensuring = () => Ensure.Argument((object)null).NotNull();
-                    ensuring.ShouldThrow<ArgumentNullException>().WithMessage("Cannot be null.");
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Argument((object)null).NotNull("foo");
-                    ensuring.ShouldThrow<ArgumentNullException>().WithMessage("foo");
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void The_exception_includes_the_name_if_set()
                 {
                     Action ensuring = () => Ensure.Argument((object)null, "myArg").NotNull();
-                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("myArg");
                 }
 
                 [Test]
                 public void The_exception_does_not_include_the_name_if_not_set()
                 {
                     Action ensuring = () => Ensure.Argument((object)null).NotNull();
-                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().And.ParamName.Should().BeNull();
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Argument((object)null).NotNull(_ => new IndexOutOfRangeException("bar"));
-                    ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                    ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
@@ -159,35 +159,35 @@ namespace Nerdle.Ensure.Tests
                 public void An_ArgumentNullException_is_thrown_by_default_if_the_argument_is_null()
                 {
                     Action ensuring = () => Ensure.Argument((int?)null).NotNull();
-                    ensuring.ShouldThrow<ArgumentNullException>().WithMessage("Cannot be null.");
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Argument((int?)null).NotNull("foo");
-                    ensuring.ShouldThrow<ArgumentNullException>().WithMessage("foo");
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void The_exception_includes_the_name_if_set()
                 {
                     Action ensuring = () => Ensure.Argument((int?)null, "myArg").NotNull();
-                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("myArg");
                 }
 
                 [Test]
                 public void The_exception_does_not_include_the_name_if_not_set()
                 {
                     Action ensuring = () => Ensure.Argument((int?)null).NotNull();
-                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+                    ensuring.ShouldThrowExactly<ArgumentNullException>().And.ParamName.Should().BeNull();
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Argument((int?)null).NotNull(_ => new IndexOutOfRangeException("bar"));
-                    ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                    ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]

@@ -21,21 +21,21 @@ namespace Nerdle.Ensure.Tests
             public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_equal()
             {
                 Action ensuring = () => Ensure.Value(1).Not(1);
-                ensuring.ShouldThrow<InvalidOperationException>().WithMessage("Cannot be 1.");
+                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be 1.");
             }
 
             [Test]
             public void A_custom_message_can_be_specified()
             {
                 Action ensuring = () => Ensure.Value(1).Not(1, "foo");
-                ensuring.ShouldThrow<InvalidOperationException>().WithMessage("foo");
+                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
                 Action ensuring = () => Ensure.Value(1).Not(1, _ => new IndexOutOfRangeException("bar"));
-                ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]
@@ -60,35 +60,35 @@ namespace Nerdle.Ensure.Tests
             public void An_ArgumentException_is_thrown_by_default_if_the_argument_is_equal()
             {
                 Action ensuring = () => Ensure.Argument(1).Not(1);
-                ensuring.ShouldThrow<ArgumentException>().WithMessage("Cannot be 1.");
+                ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Cannot be 1.");
             }
 
             [Test]
             public void A_custom_message_can_be_specified()
             {
                 Action ensuring = () => Ensure.Argument(1).Not(1, "foo");
-                ensuring.ShouldThrow<ArgumentException>().WithMessage("foo");
+                ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("foo");
             }
 
             [Test]
             public void The_exception_includes_the_name_if_set()
             {
                 Action ensuring = () => Ensure.Argument(1, "myArg").Not(1);
-                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+                ensuring.ShouldThrowExactly<ArgumentException>().And.ParamName.Should().Be("myArg");
             }
 
             [Test]
             public void The_exception_does_not_include_the_name_if_not_set()
             {
                 Action ensuring = () => Ensure.Argument(1).Not(1);
-                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+                ensuring.ShouldThrowExactly<ArgumentException>().And.ParamName.Should().BeNull();
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
                 Action ensuring = () => Ensure.Argument(1).Not(1, _ => new IndexOutOfRangeException("bar"));
-                ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]

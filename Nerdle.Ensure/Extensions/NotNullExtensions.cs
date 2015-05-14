@@ -35,15 +35,5 @@ namespace Nerdle.Ensure
         {
             return ensurable.Satisfies(x => x != null, e => new ArgumentNullException(ensurable.Name, exceptionMessage ?? "Cannot be null."));
         }
-
-        public static Ensurable<T> NotNull<T>(this EnsurableArgument<T> ensurable, Func<Ensurable<T>, Exception> exceptionFactory) where T : class
-        {
-            return ensurable.Satisfies(x => x != null, exceptionFactory);
-        }
-
-        public static Ensurable<T?> NotNull<T>(this EnsurableArgument<T?> ensurable, Func<Ensurable<T?>, Exception> exceptionFactory) where T : struct
-        {
-            return ensurable.Satisfies(x => x != null, exceptionFactory);
-        }
     }
 }

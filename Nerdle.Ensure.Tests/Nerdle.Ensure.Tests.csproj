@@ -54,8 +54,13 @@
     <Compile Include="When_creating_an_ensurable_argument.cs" />
     <Compile Include="When_creating_an_ensurable_value.cs" />
     <Compile Include="When_ensuring_a_string_has_content.cs" />
+    <Compile Include="When_ensuring_greater_than.cs" />
+    <Compile Include="When_ensuring_greater_than_or_equal_to.cs" />
+    <Compile Include="When_ensuring_less_than.cs" />
+    <Compile Include="When_ensuring_less_than_or_equal_to.cs" />
     <Compile Include="When_ensuring_not.cs" />
     <Compile Include="When_ensuring_not_null.cs" />
+    <Compile Include="When_not_matching_a_regex.cs" />
     <Compile Include="When_matching_a_regex.cs" />
     <Compile Include="When_satisfying_a_condition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

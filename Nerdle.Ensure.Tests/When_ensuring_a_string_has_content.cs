@@ -42,21 +42,21 @@ namespace Nerdle.Ensure.Tests
             public void An_InvalidOperationException_is_thrown_by_default()
             {
                 Action ensuring = () => Ensure.Value(string.Empty).HasContent();
-                ensuring.ShouldThrow<InvalidOperationException>().WithMessage("Cannot be null or white space.");
+                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null or white space.");
             }
 
             [Test]
             public void A_custom_message_can_be_specified()
             {
                 Action ensuring = () => Ensure.Value(string.Empty).HasContent("foo");
-                ensuring.ShouldThrow<InvalidOperationException>().WithMessage("foo");
+                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
                 Action ensuring = () => Ensure.Value(string.Empty).HasContent(_ => new IndexOutOfRangeException("bar"));
-                ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]
@@ -102,35 +102,35 @@ namespace Nerdle.Ensure.Tests
             public void An_ArgumentException_is_thrown_by_default()
             {
                 Action ensuring = () => Ensure.Argument(string.Empty).HasContent();
-                ensuring.ShouldThrow<ArgumentException>().WithMessage("Cannot be null or white space.");
+                ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Cannot be null or white space.");
             }
 
             [Test]
             public void A_custom_message_can_be_specified()
             {
                 Action ensuring = () => Ensure.Argument(string.Empty).HasContent("foo");
-                ensuring.ShouldThrow<ArgumentException>().WithMessage("foo");
+                ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("foo");
             }
 
             [Test]
             public void The_exception_includes_the_name_if_set()
             {
                 Action ensuring = () => Ensure.Argument(string.Empty, "myArg").HasContent("foo");
-                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+                ensuring.ShouldThrowExactly<ArgumentException>().And.ParamName.Should().Be("myArg");
             }
 
             [Test]
             public void The_exception_does_not_include_the_name_if_not_set()
             {
                 Action ensuring = () => Ensure.Argument(string.Empty).HasContent("foo");
-                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+                ensuring.ShouldThrowExactly<ArgumentException>().And.ParamName.Should().BeNull();
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
                 Action ensuring = () => Ensure.Argument(string.Empty).HasContent(_ => new IndexOutOfRangeException("bar"));
-                ensuring.ShouldThrow<IndexOutOfRangeException>().WithMessage("bar");
+                ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]
