@@ -117,6 +117,20 @@ namespace Nerdle.Ensure.Tests
                 }
 
                 [Test]
+                public void The_exception_includes_the_name_if_set()
+                {
+                    Action ensuring = () => Ensure.Argument((object)null, "myArg").NotNull();
+                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+                }
+
+                [Test]
+                public void The_exception_does_not_include_the_name_if_not_set()
+                {
+                    Action ensuring = () => Ensure.Argument((object)null).NotNull();
+                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+                }
+
+                [Test]
                 public void A_custom_exception_can_be_specified()
                 {
                     Action ensuring = () => Ensure.Argument((object)null).NotNull(_ => new IndexOutOfRangeException("bar"));
@@ -153,6 +167,20 @@ namespace Nerdle.Ensure.Tests
                 {
                     Action ensuring = () => Ensure.Argument((int?)null).NotNull("foo");
                     ensuring.ShouldThrow<ArgumentNullException>().WithMessage("foo");
+                }
+
+                [Test]
+                public void The_exception_includes_the_name_if_set()
+                {
+                    Action ensuring = () => Ensure.Argument((int?)null, "myArg").NotNull();
+                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+                }
+
+                [Test]
+                public void The_exception_does_not_include_the_name_if_not_set()
+                {
+                    Action ensuring = () => Ensure.Argument((int?)null).NotNull();
+                    ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
                 }
 
                 [Test]

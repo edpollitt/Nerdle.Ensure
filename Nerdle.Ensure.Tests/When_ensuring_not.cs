@@ -41,8 +41,8 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value(new object());
-                theEnsurable.NotNull().Should().Be(theEnsurable);
+                var theEnsurable = Ensure.Value(1);
+                theEnsurable.Not(0).Should().Be(theEnsurable);
             }    
         }
 
@@ -71,6 +71,20 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
+            public void The_exception_includes_the_name_if_set()
+            {
+                Action ensuring = () => Ensure.Argument(1, "myArg").Not(1);
+                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+            }
+
+            [Test]
+            public void The_exception_does_not_include_the_name_if_not_set()
+            {
+                Action ensuring = () => Ensure.Argument(1).Not(1);
+                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+            }
+
+            [Test]
             public void A_custom_exception_can_be_specified()
             {
                 Action ensuring = () => Ensure.Argument(1).Not(1, _ => new IndexOutOfRangeException("bar"));
@@ -80,8 +94,8 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Argument(new object());
-                theEnsurable.NotNull().Should().Be(theEnsurable);
+                var theEnsurable = Ensure.Value(1);
+                theEnsurable.Not(0).Should().Be(theEnsurable);
             }
         }
     }

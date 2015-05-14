@@ -78,6 +78,20 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
+            public void The_exception_includes_the_name_if_set()
+            {
+                Action ensuring = () => Ensure.Argument(1, "myArg").Satisfies(x => false);
+                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().Be("myArg");
+            }
+
+            [Test]
+            public void The_exception_does_not_include_the_name_if_not_set()
+            {
+                Action ensuring = () => Ensure.Argument(1).Satisfies(x => false);
+                ensuring.ShouldThrow<ArgumentException>().And.ParamName.Should().BeNull();
+            }
+
+            [Test]
             public void The_ensurable_is_returned()
             {
                 var theEnsurable = Ensure.Argument(1);

@@ -21,7 +21,7 @@ namespace Nerdle.Ensure
             Name = ((MemberExpression)argumentExpression.Body).Member.Name;
         }
 
-        public override Exception DefaultException(string message)
+        protected override Exception DefaultException(string message)
         {
             return new ArgumentException(message, Name);
         }

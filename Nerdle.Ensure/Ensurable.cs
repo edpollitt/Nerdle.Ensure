@@ -13,19 +13,8 @@ namespace Nerdle.Ensure
             _value = value;
         }
 
-        public Exception DefaultException(string messageFormat, params object[] messageArgs)
-        {
-            var message = string.Format(messageFormat, messageArgs);
-            return DefaultException(message);
-        }
-
-        public abstract Exception DefaultException(string message);
+        protected abstract Exception DefaultException(string message);
         
-        public static implicit operator T(Ensurable<T> ensurable)
-        {
-            return ensurable._value;
-        }
-
         public Ensurable<T> Satisfies(Func<T, bool> predicate, string exceptionMessage = null)
         {
             if (predicate(_value))
@@ -40,6 +29,16 @@ namespace Nerdle.Ensure
                 return this;
 
             throw exceptionFactory(this);
+        }
+
+        public override string ToString()
+        {
+            return _value.ToString();
+        }
+
+        public static implicit operator T(Ensurable<T> ensurable)
+        {
+            return ensurable._value;
         }
     }
 }

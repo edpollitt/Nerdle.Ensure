@@ -11,7 +11,7 @@ namespace Nerdle.Ensure
         {
         }
 
-        public override Exception DefaultException(string message)
+        protected override Exception DefaultException(string message)
         {
             return new InvalidOperationException(message);
         }
