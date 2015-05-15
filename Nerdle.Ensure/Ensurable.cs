@@ -20,7 +20,7 @@ namespace Nerdle.Ensure
             if (predicate(_value))
                 return this;
 
-            throw DefaultException(exceptionMessage ?? "Did not satisfy the predicate condition.");
+            throw DefaultException(exceptionMessage ?? "Did not satisfy the expected condition.");
         }
 
         public Ensurable<T> Satisfies(Func<T, bool> predicate, Func<Ensurable<T>, Exception> exceptionFactory)

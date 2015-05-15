@@ -18,7 +18,14 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_default()
+            public void An_exception_is_thrown_if_the_value_is_default()
+            {
+                Action ensuring = () => Ensure.Value(0).NotDefault();
+                ensuring.ShouldThrow<Exception>();
+            }
+            
+            [Test]
+            public void The_default_exception_is_InvalidOperationException()
             {
                 Action ensuring = () => Ensure.Value(Guid.Empty).NotDefault();
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot have default value.");
@@ -57,7 +64,14 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_ArgumentException_is_thrown_by_default_if_the_value_is_default()
+            public void An_exception_is_thrown_if_the_value_is_default()
+            {
+                Action ensuring = () => Ensure.Argument(0).NotDefault();
+                ensuring.ShouldThrow<Exception>();
+            }
+            
+            [Test]
+            public void The_default_exception_is_ArgumentException()
             {
                 Action ensuring = () => Ensure.Argument(Guid.Empty).NotDefault();
                 ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Cannot have default value.");

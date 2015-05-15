@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Nerdle.Ensure.Extensions
+namespace Nerdle.Ensure
 {
     [DebuggerStepThrough]
     public static class GreaterThanExtensions

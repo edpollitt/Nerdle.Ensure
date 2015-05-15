@@ -47,7 +47,7 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_InvalidOperationException_is_thrown_by_default()
+            public void The_default_exception_is_InvalidOperationException()
             {
                 Action ensuring = () => Ensure.Value(1).Between(-1, 0);
                 ensuring.ShouldThrowExactly<InvalidOperationException>();
@@ -63,8 +63,8 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void A_custom_exception_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(1).Between(10, 100, _ => new IndexOutOfRangeException("bar"));
-                ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
+                Action ensuring = () => Ensure.Value(1).Between(10, 100, _ => new FieldAccessException("bar"));
+                ensuring.ShouldThrowExactly<FieldAccessException>().WithMessage("bar");
             }
 
             [Test]
@@ -114,7 +114,7 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_ArgumentOutOfRangeException_is_thrown_by_default()
+            public void The_default_exception_is_ArgumentOutOfRangeException()
             {
                 Action ensuring = () => Ensure.Argument(1).Between(-1, 0);
                 ensuring.ShouldThrowExactly<ArgumentOutOfRangeException>();

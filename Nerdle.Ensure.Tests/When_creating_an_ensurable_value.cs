@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 
 namespace Nerdle.Ensure.Tests
@@ -7,9 +8,15 @@ namespace Nerdle.Ensure.Tests
     public class When_creating_an_ensurable_value
     {
         [Test]
-        public void The_value_is_set()
+        public void The_value_is_set_and_can_be_explicitly_cast()
         {
-            Ensure.Value(1).Should().Match(value => (Ensurable<int>)value == 1);
+            (Ensure.Value(1) == 1).Should().BeTrue();
+        }
+
+        [Test]
+        public void The_ensurable_can_be_stringed_to_its_value_string()
+        {
+            Ensure.Value(Guid.Empty).ToString().Should().Be(Guid.Empty.ToString());
         }
     }
 }

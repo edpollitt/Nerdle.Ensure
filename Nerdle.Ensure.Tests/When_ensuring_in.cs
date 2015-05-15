@@ -19,15 +19,14 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void Handles_non_generic_collections()
+            public void An_exception_is_thrown_if_the_value_is_not_contained_in_the_collection()
             {
-                Action ensuring = () => Ensure.Value(DayOfWeek.Friday).In(Enum.GetValues(typeof (DayOfWeek)));
-                ensuring.ShouldNotThrow();
+                Action ensuring = () => Ensure.Value(0).In(new[] { 1, 2, 3 });
+                ensuring.ShouldThrow<Exception>();
             }
 
             [Test]
-            public void
-                An_InvalidOperationException_is_thrown_by_default_if_the_value_is_not_contained_in_the_collection()
+            public void The_default_exception_is_InvalidOperationException()
             {
                 Action ensuring = () => Ensure.Value(0).In(new[] { 1, 2, 3 });
                 ensuring.ShouldThrowExactly<InvalidOperationException>()
@@ -67,14 +66,14 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void Handles_non_generic_collections()
+            public void An_exception_is_thrown_if_the_value_is_not_contained_in_the_collection()
             {
-                Action ensuring = () => Ensure.Argument(DayOfWeek.Friday).In(Enum.GetValues(typeof(DayOfWeek)));
-                ensuring.ShouldNotThrow();
+                Action ensuring = () => Ensure.Argument(0).In(new[] { 1, 2, 3 });
+                ensuring.ShouldThrow<Exception>();
             }
 
             [Test]
-            public void An_ArgumentException_is_thrown_by_default_if_the_value_is_not_contained_in_the_collection()
+            public void The_default_exception_is_ArgumentException()
             {
                 Action ensuring = () => Ensure.Argument(0).In(new[] { 1, 2, 3 });
                 ensuring.ShouldThrowExactly<ArgumentException>()

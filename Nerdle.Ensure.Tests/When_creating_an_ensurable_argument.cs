@@ -8,9 +8,9 @@ namespace Nerdle.Ensure.Tests
     public class When_creating_an_ensurable_argument
     {
         [Test]
-        public void The_value_is_set()
+        public void The_value_is_set_and_can_be_explicitly_cast()
         {
-            Ensure.Argument(1).Should().Match(arg => (Ensurable<int>)arg == 1);
+            (Ensure.Argument(1) == 1).Should().BeTrue();
         }
 
         [Test]
@@ -31,6 +31,12 @@ namespace Nerdle.Ensure.Tests
             var theTimeNow = DateTime.Now;
             Ensure.Argument(() => theTimeNow).Should()
                 .Match(arg => (Ensurable<DateTime>)arg == theTimeNow && ((EnsurableArgument<DateTime>)arg).Name == "theTimeNow");
+        }
+
+        [Test]
+        public void The_ensurable_can_be_stringed_to_its_value_string()
+        {
+            Ensure.Argument(Guid.Empty).ToString().Should().Be(Guid.Empty.ToString());
         }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 using FluentAssertions;
-using Nerdle.Ensure.Extensions;
+using Nerdle.Ensure;
 using NUnit.Framework;
 
 namespace Nerdle.Ensure.Tests
@@ -33,10 +33,11 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_InvalidOperationException_is_thrown_by_default()
+            public void The_default_exception_is_InvalidOperationException()
             {
                 Action ensuring = () => Ensure.Value(0).GreaterThanOrEqualTo(1);
-                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Value must be greater than or equal to 1 but was 0.");
+                ensuring.ShouldThrowExactly<InvalidOperationException>()
+                    .WithMessage("Value must be greater than or equal to 1 but was 0.");
             }
 
             [Test]
@@ -86,10 +87,11 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_ArgumentOutOfRangeException_is_thrown_by_default()
+            public void The_default_exception_is_ArgumentOutOfRangeException()
             {
                 Action ensuring = () => Ensure.Argument(1).GreaterThanOrEqualTo(2);
-                ensuring.ShouldThrowExactly<ArgumentOutOfRangeException>().WithMessage("Value must be greater than or equal to 2 but was 1.");
+                ensuring.ShouldThrowExactly<ArgumentOutOfRangeException>()
+                    .WithMessage("Value must be greater than or equal to 2 but was 1.");
             }
 
             [Test]

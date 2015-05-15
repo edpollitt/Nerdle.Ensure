@@ -50,6 +50,7 @@
     <Compile Include="Extensions\LessThanExtensions.cs" />
     <Compile Include="Extensions\MatchesExtensions.cs" />
     <Compile Include="Extensions\NotDefaultExtensions.cs" />
+    <Compile Include="Extensions\NotEmptyExtensions.cs" />
     <Compile Include="Extensions\NotExtensions.cs" />
     <Compile Include="Extensions\NotNullExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

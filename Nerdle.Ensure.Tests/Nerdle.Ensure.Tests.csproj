@@ -62,6 +62,7 @@
     <Compile Include="When_ensuring_less_than_or_equal_to.cs" />
     <Compile Include="When_ensuring_not.cs" />
     <Compile Include="When_ensuring_not_default.cs" />
+    <Compile Include="When_ensuring_not_empty.cs" />
     <Compile Include="When_ensuring_not_null.cs" />
     <Compile Include="When_not_matching_a_regex.cs" />
     <Compile Include="When_matching_a_regex.cs" />

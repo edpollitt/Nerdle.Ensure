@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -21,7 +22,14 @@ namespace Nerdle.Ensure.Tests
                 }
 
                 [Test]
-                public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_null()
+                public void An_exception_is_thrown_if_the_value_is_null()
+                {
+                    Action ensuring = () => Ensure.Value(new int?()).NotNull();
+                    ensuring.ShouldThrow<Exception>();
+                }
+
+                [Test]
+                public void The_default_exception_is_InvalidOperationException()
                 {
                     Action ensuring = () => Ensure.Value((object)null).NotNull();
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null.");
@@ -37,14 +45,14 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((object)null).NotNull(_ => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.Value(new DateTime?()).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Argument(new object());
+                    var theEnsurable = Ensure.Value(new object());
                     theEnsurable.NotNull().Should().Be(theEnsurable);
                 }
             }
@@ -60,30 +68,37 @@ namespace Nerdle.Ensure.Tests
                 }
 
                 [Test]
-                public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_null()
+                public void An_exception_is_thrown_if_the_value_is_null()
                 {
-                    Action ensuring = () => Ensure.Value((int?)null).NotNull();
+                    Action ensuring = () => Ensure.Value((object)null).NotNull();
+                    ensuring.ShouldThrow<Exception>();
+                }
+
+                [Test]
+                public void The_default_exception_is_InvalidOperationException()
+                {
+                    Action ensuring = () => Ensure.Value(new int?()).NotNull();
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((int?)null).NotNull("foo");
+                    Action ensuring = () => Ensure.Value((string)null).NotNull("foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((int?)null).NotNull(_ => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.Value(new DateTime?()).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Argument((int?)1);
+                    var theEnsurable = Ensure.Value((int?)1);
                     theEnsurable.NotNull().Should().Be(theEnsurable);
                 }
             }
@@ -103,9 +118,16 @@ namespace Nerdle.Ensure.Tests
                 }
 
                 [Test]
-                public void An_ArgumentNullException_is_thrown_by_default_if_the_argument_is_null()
+                public void An_exception_is_thrown_if_the_value_is_null()
                 {
                     Action ensuring = () => Ensure.Argument((object)null).NotNull();
+                    ensuring.ShouldThrow<Exception>();
+                }
+
+                [Test]
+                public void The_default_exception_is_ArgumentNullException()
+                {
+                    Action ensuring = () => Ensure.Argument((string)null).NotNull();
                     ensuring.ShouldThrowExactly<ArgumentNullException>().WithMessage("Cannot be null.");
                 }
 
@@ -119,7 +141,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void The_exception_includes_the_name_if_set()
                 {
-                    Action ensuring = () => Ensure.Argument((object)null, "myArg").NotNull();
+                    Action ensuring = () => Ensure.Argument((List<int>)null, "myArg").NotNull();
                     ensuring.ShouldThrowExactly<ArgumentNullException>().And.ParamName.Should().Be("myArg");
                 }
 
@@ -156,9 +178,16 @@ namespace Nerdle.Ensure.Tests
                 }
 
                 [Test]
-                public void An_ArgumentNullException_is_thrown_by_default_if_the_argument_is_null()
+                public void An_exception_is_thrown_if_the_value_is_null()
                 {
-                    Action ensuring = () => Ensure.Argument((int?)null).NotNull();
+                    Action ensuring = () => Ensure.Argument(new int?()).NotNull();
+                    ensuring.ShouldThrow<Exception>();
+                }
+
+                [Test]
+                public void The_default_exception_is_ArgumentNullException()
+                {
+                    Action ensuring = () => Ensure.Argument(new DateTime?()).NotNull();
                     ensuring.ShouldThrowExactly<ArgumentNullException>().WithMessage("Cannot be null.");
                 }
 

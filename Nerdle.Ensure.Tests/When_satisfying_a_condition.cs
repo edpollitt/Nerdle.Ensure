@@ -11,17 +11,24 @@ namespace Nerdle.Ensure.Tests
         public class On_a_value
         {
             [Test]
-            public void No_exception_is_thrown_if_the_condition_is_met()
+            public void No_exception_is_thrown_if_the_condition_is_satisfied()
             {
                 Action ensuring = () => Ensure.Value(1).Satisfies(x => true);
                 ensuring.ShouldNotThrow();
             }
 
             [Test]
-            public void An_InvalidOperationException_is_thrown_by_default_if_the_condition_is_not_met()
+            public void An_exception_is_thrown_if_the_condition_is_not_satisfied()
             {
                 Action ensuring = () => Ensure.Value(1).Satisfies(x => false);
-                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Did not satisfy the predicate condition.");
+                ensuring.ShouldThrow<Exception>();
+            }
+
+            [Test]
+            public void The_default_exception_is_InvalidOperationException()
+            {
+                Action ensuring = () => Ensure.Value(1).Satisfies(x => false);
+                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Did not satisfy the expected condition.");
             }
 
             [Test]
@@ -41,7 +48,7 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Argument(1);
+                var theEnsurable = Ensure.Value(1);
                 theEnsurable.Satisfies(x => true).Should().Be(theEnsurable);
             }
         }
@@ -57,10 +64,17 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_ArgumentException_is_thrown_by_default_if_the_condition_is_not_met()
+            public void An_exception_is_thrown_if_the_condition_is_not_satisfied()
             {
                 Action ensuring = () => Ensure.Argument(1).Satisfies(x => false);
-                ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Did not satisfy the predicate condition.");
+                ensuring.ShouldThrow<Exception>();
+            }
+
+            [Test]
+            public void The_default_exception_is_ArgumentException()
+            {
+                Action ensuring = () => Ensure.Argument(1).Satisfies(x => false);
+                ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Did not satisfy the expected condition.");
             }
 
             [Test]

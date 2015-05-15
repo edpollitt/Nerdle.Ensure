@@ -18,7 +18,14 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_InvalidOperationException_is_thrown_by_default_if_the_value_is_equal()
+            public void An_exception_is_thrown_if_the_value_is_equal()
+            {
+                Action ensuring = () => Ensure.Value(1).Not(1);
+                ensuring.ShouldThrow<Exception>();
+            }
+            
+            [Test]
+            public void The_default_exception_is_InvalidOperationException()
             {
                 Action ensuring = () => Ensure.Value(1).Not(1);
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be 1.");
@@ -57,7 +64,14 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_ArgumentException_is_thrown_by_default_if_the_argument_is_equal()
+            public void An_exception_is_thrown_if_the_value_is_equal()
+            {
+                Action ensuring = () => Ensure.Argument(1).Not(1);
+                ensuring.ShouldThrow<Exception>();
+            }
+            
+            [Test]
+            public void The_default_exception_is_ArgumentException()
             {
                 Action ensuring = () => Ensure.Argument(1).Not(1);
                 ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Cannot be 1.");
@@ -94,7 +108,7 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value(1);
+                var theEnsurable = Ensure.Argument(1);
                 theEnsurable.Not(0).Should().Be(theEnsurable);
             }
         }

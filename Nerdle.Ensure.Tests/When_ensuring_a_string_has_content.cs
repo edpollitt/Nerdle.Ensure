@@ -39,7 +39,7 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_InvalidOperationException_is_thrown_by_default()
+            public void The_default_exception_is_InvalidOperationException()
             {
                 Action ensuring = () => Ensure.Value(string.Empty).HasContent();
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null or white space.");
@@ -99,7 +99,7 @@ namespace Nerdle.Ensure.Tests
             }
 
             [Test]
-            public void An_ArgumentException_is_thrown_by_default()
+            public void The_default_exception_is_ArgumentException()
             {
                 Action ensuring = () => Ensure.Argument(string.Empty).HasContent();
                 ensuring.ShouldThrowExactly<ArgumentException>().WithMessage("Cannot be null or white space.");
