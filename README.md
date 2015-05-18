@@ -8,4 +8,11 @@ public void Foo(Bar bar)
 }
 ```
 
+Available via Nuget
+```csharp
+Install-Package Nerdle.Ensure
+```
+
 See the [wiki](https://github.com/edpollitt/Nerdle.Ensure/wiki) for examples
+
+
