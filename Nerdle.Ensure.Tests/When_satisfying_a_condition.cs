@@ -57,7 +57,7 @@ namespace Nerdle.Ensure.Tests
         public class On_an_argument
         {
             [Test]
-            public void No_exception_is_thrown_if_the_condition_is_met()
+            public void No_exception_is_thrown_if_the_condition_is_satisfied()
             {
                 Action ensuring = () => Ensure.Argument(1).Satisfies(x => true);
                 ensuring.ShouldNotThrow();
