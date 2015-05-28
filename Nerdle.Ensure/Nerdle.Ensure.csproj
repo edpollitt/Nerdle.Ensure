@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nerdle.Ensure</RootNamespace>
     <AssemblyName>Nerdle.Ensure</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
     <Compile Include="Ensurable.cs" />
     <Compile Include="EnsurableValue.cs" />
     <Compile Include="Ensure.cs" />
+    <Compile Include="Extensions\IsAssignableToExtensions.cs" />
     <Compile Include="Extensions\BetweenExtensions.cs" />
     <Compile Include="Extensions\GreaterThanExtensions.cs" />
     <Compile Include="Extensions\HasContentExtensions.cs" />
