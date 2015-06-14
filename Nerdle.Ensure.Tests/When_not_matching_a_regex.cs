@@ -17,21 +17,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_regex_is_not_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch(new Regex(".*[0-9]"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch(new Regex(".*[0-9]"));
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_regex_is_not_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch(new Regex("^.*baz$"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch(new Regex("^.*baz$"));
                     ensuring.ShouldThrow<Exception>();
                 }
 
                 [Test]
                 public void The_default_exception_is_InvalidOperationException()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch(new Regex("^.*baz$"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch(new Regex("^.*baz$"));
                     ensuring.ShouldThrowExactly<InvalidOperationException>()
                         .WithMessage("'foobarbaz' does not match the required regex '^.*baz$'.");
                 }
@@ -39,14 +39,14 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch(new Regex("^.*baz$"), "foo");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch(new Regex("^.*baz$"), "foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz")
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz")
                         .DoesNotMatch(new Regex("^.*baz$"), _ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
@@ -54,7 +54,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Value("foobarbaz");
+                    var theEnsurable = Ensure.ValueOf("foobarbaz");
                     theEnsurable.DoesNotMatch(new Regex("^x$")).Should().Be(theEnsurable);
                 }
             }
@@ -65,21 +65,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_regex_is_not_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch(".*[0-9]");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch(".*[0-9]");
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_regex_is_not_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch("^.*baz$");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch("^.*baz$");
                     ensuring.ShouldThrow<Exception>();
                 }
 
                 [Test]
                 public void The_default_exception_is_InvalidOperationException()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch("^.*baz$");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch("^.*baz$");
                     ensuring.ShouldThrowExactly<InvalidOperationException>()
                         .WithMessage("'foobarbaz' does not match the required regex '^.*baz$'.");
                 }
@@ -87,14 +87,14 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").DoesNotMatch("^.*baz$", "foo");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").DoesNotMatch("^.*baz$", "foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz")
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz")
                         .DoesNotMatch("^.*baz$", _ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
@@ -102,7 +102,7 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Value("foobarbaz");
+                    var theEnsurable = Ensure.ValueOf("foobarbaz");
                     theEnsurable.DoesNotMatch(new Regex("^x$")).Should().Be(theEnsurable);
                 }
             }

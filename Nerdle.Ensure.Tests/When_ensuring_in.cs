@@ -14,21 +14,21 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void No_exception_is_thrown_if_the_value_is_contained_in_the_collection()
             {
-                Action ensuring = () => Ensure.Value(1).In(new[] { 1, 2, 3 });
+                Action ensuring = () => Ensure.ValueOf(1).In(new[] { 1, 2, 3 });
                 ensuring.ShouldNotThrow();
             }
 
             [Test]
             public void An_exception_is_thrown_if_the_value_is_not_contained_in_the_collection()
             {
-                Action ensuring = () => Ensure.Value(0).In(new[] { 1, 2, 3 });
+                Action ensuring = () => Ensure.ValueOf(0).In(new[] { 1, 2, 3 });
                 ensuring.ShouldThrow<Exception>();
             }
 
             [Test]
             public void The_default_exception_is_InvalidOperationException()
             {
-                Action ensuring = () => Ensure.Value(0).In(new[] { 1, 2, 3 });
+                Action ensuring = () => Ensure.ValueOf(0).In(new[] { 1, 2, 3 });
                 ensuring.ShouldThrowExactly<InvalidOperationException>()
                     .WithMessage("Value was not contained in the specified collection.");
             }
@@ -36,21 +36,21 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void A_custom_message_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(99).In(new[] { 1, 2, 3 }, "banana");
+                Action ensuring = () => Ensure.ValueOf(99).In(new[] { 1, 2, 3 }, "banana");
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("banana");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(0).In(new[] { 1, 2, 3 }, _ => new IOException("oh no io"));
+                Action ensuring = () => Ensure.ValueOf(0).In(new[] { 1, 2, 3 }, _ => new IOException("oh no io"));
                 ensuring.ShouldThrowExactly<IOException>().WithMessage("oh no io");
             }
 
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value(1).In(new[] { 1, 2, 3 });
+                var theEnsurable = Ensure.ValueOf(1).In(new[] { 1, 2, 3 });
                 theEnsurable.Not(0).Should().Be(theEnsurable);
             }
         }

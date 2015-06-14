@@ -17,21 +17,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_regex_is_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(new Regex("^.*baz$"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(new Regex("^.*baz$"));
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_regex_is_not_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(new Regex(".*[0-9]"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(new Regex(".*[0-9]"));
                     ensuring.ShouldThrow<Exception>();
                 }
 
                 [Test]
                 public void The_default_exception_is_InvalidOperationException()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(new Regex(".*[0-9]"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(new Regex(".*[0-9]"));
                     ensuring.ShouldThrowExactly<InvalidOperationException>()
                         .WithMessage("'foobarbaz' does not match the required regex '.*[0-9]'.");
                 }
@@ -39,21 +39,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(new Regex(".*[0-9]"), "foo");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(new Regex(".*[0-9]"), "foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(new Regex(".*[0-9]"), _ => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(new Regex(".*[0-9]"), _ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Value("foobarbaz");
+                    var theEnsurable = Ensure.ValueOf("foobarbaz");
                     theEnsurable.Matches(new Regex(".*")).Should().Be(theEnsurable);
                 }
             }
@@ -64,21 +64,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_regex_is_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches("^.*baz$");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches("^.*baz$");
                     ensuring.ShouldNotThrow();
                 }
 
                  [Test]
                 public void An_exception_is_thrown_if_the_regex_is_not_a_match()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(".*[0-9]");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(".*[0-9]");
                     ensuring.ShouldThrow<Exception>();
                 }
 
                 [Test]
                 public void The_default_exception_is_InvalidOperationException()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(".*[0-9]");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(".*[0-9]");
                     ensuring.ShouldThrowExactly<InvalidOperationException>()
                         .WithMessage("'foobarbaz' does not match the required regex '.*[0-9]'.");
                 }
@@ -86,21 +86,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(".*[0-9]", "foo");
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(".*[0-9]", "foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value("foobarbaz").Matches(".*[0-9]", _ => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.ValueOf("foobarbaz").Matches(".*[0-9]", _ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Value("foobarbaz");
+                    var theEnsurable = Ensure.ValueOf("foobarbaz");
                     theEnsurable.Matches(new Regex(".*")).Should().Be(theEnsurable);
                 }
             }

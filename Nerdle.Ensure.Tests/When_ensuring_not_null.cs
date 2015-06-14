@@ -17,42 +17,42 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_value_is_not_null()
                 {
-                    Action ensuring = () => Ensure.Value(new object()).NotNull();
+                    Action ensuring = () => Ensure.ValueOf(new object()).NotNull();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_value_is_null()
                 {
-                    Action ensuring = () => Ensure.Value(new int?()).NotNull();
+                    Action ensuring = () => Ensure.ValueOf(new int?()).NotNull();
                     ensuring.ShouldThrow<Exception>();
                 }
 
                 [Test]
                 public void The_default_exception_is_InvalidOperationException()
                 {
-                    Action ensuring = () => Ensure.Value((object)null).NotNull();
+                    Action ensuring = () => Ensure.ValueOf((object)null).NotNull();
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((object)null).NotNull("foo");
+                    Action ensuring = () => Ensure.ValueOf((object)null).NotNull("foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value(new DateTime?()).NotNull(_ => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.ValueOf(new DateTime?()).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Value(new object());
+                    var theEnsurable = Ensure.ValueOf(new object());
                     theEnsurable.NotNull().Should().Be(theEnsurable);
                 }
             }
@@ -63,42 +63,42 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_value_is_not_null()
                 {
-                    Action ensuring = () => Ensure.Value((int?)1).NotNull();
+                    Action ensuring = () => Ensure.ValueOf((int?)1).NotNull();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_value_is_null()
                 {
-                    Action ensuring = () => Ensure.Value((object)null).NotNull();
+                    Action ensuring = () => Ensure.ValueOf((object)null).NotNull();
                     ensuring.ShouldThrow<Exception>();
                 }
 
                 [Test]
                 public void The_default_exception_is_InvalidOperationException()
                 {
-                    Action ensuring = () => Ensure.Value(new int?()).NotNull();
+                    Action ensuring = () => Ensure.ValueOf(new int?()).NotNull();
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null.");
                 }
 
                 [Test]
                 public void A_custom_message_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value((string)null).NotNull("foo");
+                    Action ensuring = () => Ensure.ValueOf((string)null).NotNull("foo");
                     ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
                 }
 
                 [Test]
                 public void A_custom_exception_can_be_specified()
                 {
-                    Action ensuring = () => Ensure.Value(new DateTime?()).NotNull(_ => new IndexOutOfRangeException("bar"));
+                    Action ensuring = () => Ensure.ValueOf(new DateTime?()).NotNull(_ => new IndexOutOfRangeException("bar"));
                     ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
                 }
 
                 [Test]
                 public void The_ensurable_is_returned()
                 {
-                    var theEnsurable = Ensure.Value((int?)1);
+                    var theEnsurable = Ensure.ValueOf((int?)1);
                     theEnsurable.NotNull().Should().Be(theEnsurable);
                 }
             }

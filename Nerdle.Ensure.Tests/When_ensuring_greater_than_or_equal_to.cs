@@ -1,6 +1,5 @@
 using System;
 using FluentAssertions;
-using Nerdle.Ensure;
 using NUnit.Framework;
 
 namespace Nerdle.Ensure.Tests
@@ -14,28 +13,28 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void No_exception_is_thrown_if_the_value_is_greater_than()
             {
-                Action ensuring = () => Ensure.Value(1).GreaterThanOrEqualTo(0);
+                Action ensuring = () => Ensure.ValueOf(1).GreaterThanOrEqualTo(0);
                 ensuring.ShouldNotThrow();
             }
 
             [Test]
             public void No_exception_is_thrown_if_the_value_is_equal_to()
             {
-                Action ensuring = () => Ensure.Value(1).GreaterThanOrEqualTo(1);
+                Action ensuring = () => Ensure.ValueOf(1).GreaterThanOrEqualTo(1);
                 ensuring.ShouldNotThrow();
             }
 
             [Test]
             public void An_exception_is_thrown_if_the_value_is_less_than()
             {
-                Action ensuring = () => Ensure.Value(1).GreaterThanOrEqualTo(2);
+                Action ensuring = () => Ensure.ValueOf(1).GreaterThanOrEqualTo(2);
                 ensuring.ShouldThrow<Exception>();
             }
 
             [Test]
             public void The_default_exception_is_InvalidOperationException()
             {
-                Action ensuring = () => Ensure.Value(0).GreaterThanOrEqualTo(1);
+                Action ensuring = () => Ensure.ValueOf(0).GreaterThanOrEqualTo(1);
                 ensuring.ShouldThrowExactly<InvalidOperationException>()
                     .WithMessage("Value must be greater than or equal to 1 but was 0.");
             }
@@ -43,21 +42,21 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void A_custom_message_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(0).GreaterThanOrEqualTo(1, "foo");
+                Action ensuring = () => Ensure.ValueOf(0).GreaterThanOrEqualTo(1, "foo");
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(0).GreaterThanOrEqualTo(1, _ => new IndexOutOfRangeException("bar"));
+                Action ensuring = () => Ensure.ValueOf(0).GreaterThanOrEqualTo(1, _ => new IndexOutOfRangeException("bar"));
                 ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value(1);
+                var theEnsurable = Ensure.ValueOf(1);
                 theEnsurable.GreaterThanOrEqualTo(0).Should().Be(theEnsurable);
             }
         }

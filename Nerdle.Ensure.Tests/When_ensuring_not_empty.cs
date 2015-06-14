@@ -15,35 +15,35 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void No_exception_is_thrown_if_the_collection_is_not_empty()
             {
-                Action ensuring = () => Ensure.Value(new[] { 1 }).NotEmpty();
+                Action ensuring = () => Ensure.ValueOf(new[] { 1 }).NotEmpty();
                 ensuring.ShouldNotThrow();
             }
 
             [Test]
             public void An_exception_is_thrown_if_the_collection_is_empty()
             {
-                Action ensuring = () => Ensure.Value(Enumerable.Empty<int>()).NotEmpty();
+                Action ensuring = () => Ensure.ValueOf(Enumerable.Empty<int>()).NotEmpty();
                 ensuring.ShouldThrow<Exception>();
             }
 
             [Test]
             public void The_default_exception_is_InvalidOperationException()
             {
-                Action ensuring = () => Ensure.Value(Enumerable.Empty<int>()).NotEmpty();
+                Action ensuring = () => Ensure.ValueOf(Enumerable.Empty<int>()).NotEmpty();
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Collection must not be empty.");
             }
 
             [Test]
             public void A_custom_message_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(Enumerable.Empty<int>()).NotEmpty("foo");
+                Action ensuring = () => Ensure.ValueOf(Enumerable.Empty<int>()).NotEmpty("foo");
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(Enumerable.Empty<int>())
+                Action ensuring = () => Ensure.ValueOf(Enumerable.Empty<int>())
                     .NotEmpty(_ => new FileNotFoundException("bar"));
                 ensuring.ShouldThrowExactly<FileNotFoundException>().WithMessage("bar");
             }
@@ -51,7 +51,7 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value(new[] { 1 });
+                var theEnsurable = Ensure.ValueOf(new[] { 1 });
                 theEnsurable.NotEmpty().Should().Be(theEnsurable);
             }
         }

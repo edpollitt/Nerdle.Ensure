@@ -10,13 +10,13 @@ namespace Nerdle.Ensure.Tests
         [Test]
         public void The_value_is_set_and_can_be_explicitly_cast()
         {
-            (Ensure.Value(1) == 1).Should().BeTrue();
+            (Ensure.ValueOf(1) == 1).Should().BeTrue();
         }
 
         [Test]
         public void The_ensurable_can_be_stringed_to_its_value_string()
         {
-            Ensure.Value(Guid.Empty).ToString().Should().Be(Guid.Empty.ToString());
+            Ensure.ValueOf(Guid.Empty).ToString().Should().Be(Guid.Empty.ToString());
         }
     }
 }

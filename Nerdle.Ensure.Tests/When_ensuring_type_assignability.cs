@@ -17,21 +17,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_type_is_the_same()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<int>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<int>();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void No_exception_is_thrown_if_the_type_is_a_subtype()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<ValueType>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<ValueType>();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_type_is_not_the_same_or_a_subtype()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(ValueType)).IsAssignableTo<int>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(ValueType)).IsAssignableTo<int>();
                     ensuring.ShouldThrow<Exception>();
                 }
             }
@@ -42,14 +42,14 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_type_implements_the_interface()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<IFormattable>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<IFormattable>();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_type_does_not_implement_the_interface()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<IEnumerable>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<IEnumerable>();
                     ensuring.ShouldThrow<Exception>();
                 }
             }
@@ -60,21 +60,21 @@ namespace Nerdle.Ensure.Tests
                 [Test]
                 public void No_exception_is_thrown_if_the_type_is_the_same()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(IConvertible)).IsAssignableTo<IConvertible>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(IConvertible)).IsAssignableTo<IConvertible>();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void No_exception_is_thrown_if_the_type_is_a_sub_interface()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(ICollection)).IsAssignableTo<IEnumerable>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(ICollection)).IsAssignableTo<IEnumerable>();
                     ensuring.ShouldNotThrow();
                 }
 
                 [Test]
                 public void An_exception_is_thrown_if_the_type_is_not_the_same_or_a_sub_interface()
                 {
-                    Action ensuring = () => Ensure.Value(typeof(IEnumerable)).IsAssignableTo<ICollection>();
+                    Action ensuring = () => Ensure.ValueOf(typeof(IEnumerable)).IsAssignableTo<ICollection>();
                     ensuring.ShouldThrow<Exception>();
                 }
             }
@@ -82,7 +82,7 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_default_exception_is_InvalidOperationException()
             {
-                Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<long>();
+                Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<long>();
                 ensuring.ShouldThrowExactly<InvalidOperationException>()
                     .WithMessage("Type System.Int32 is not assignable to type System.Int64.");
             }
@@ -90,21 +90,21 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void A_custom_message_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<double>("foo");
+                Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<double>("foo");
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(typeof(int)).IsAssignableTo<double>(_ => new IndexOutOfRangeException("bar"));
+                Action ensuring = () => Ensure.ValueOf(typeof(int)).IsAssignableTo<double>(_ => new IndexOutOfRangeException("bar"));
                 ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value(typeof(ushort));
+                var theEnsurable = Ensure.ValueOf(typeof(ushort));
                 theEnsurable.IsAssignableTo<IComparable>().Should().Be(theEnsurable);
             }
         }

@@ -13,56 +13,56 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void No_exception_is_thrown_if_the_string_has_content()
             {
-                Action ensuring = () => Ensure.Value("foo").HasContent();
+                Action ensuring = () => Ensure.ValueOf("foo").HasContent();
                 ensuring.ShouldNotThrow();
             }
 
             [Test]
             public void An_exception_is_thrown_if_the_string_is_null()
             {
-                Action ensuring = () => Ensure.Value((string)null).HasContent();
+                Action ensuring = () => Ensure.ValueOf((string)null).HasContent();
                 ensuring.ShouldThrow<Exception>().WithMessage("Cannot be null or white space.");
             }
 
             [Test]
             public void An_exception_is_thrown_if_the_string_is_empty()
             {
-                Action ensuring = () => Ensure.Value(string.Empty).HasContent();
+                Action ensuring = () => Ensure.ValueOf(string.Empty).HasContent();
                 ensuring.ShouldThrow<Exception>().WithMessage("Cannot be null or white space.");
             }
 
             [Test]
             public void An_exception_is_thrown_if_the_string_is_white_space()
             {
-                Action ensuring = () => Ensure.Value("   ").HasContent();
+                Action ensuring = () => Ensure.ValueOf("   ").HasContent();
                 ensuring.ShouldThrow<Exception>().WithMessage("Cannot be null or white space.");
             }
 
             [Test]
             public void The_default_exception_is_InvalidOperationException()
             {
-                Action ensuring = () => Ensure.Value(string.Empty).HasContent();
+                Action ensuring = () => Ensure.ValueOf(string.Empty).HasContent();
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("Cannot be null or white space.");
             }
 
             [Test]
             public void A_custom_message_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(string.Empty).HasContent("foo");
+                Action ensuring = () => Ensure.ValueOf(string.Empty).HasContent("foo");
                 ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
             }
 
             [Test]
             public void A_custom_exception_can_be_specified()
             {
-                Action ensuring = () => Ensure.Value(string.Empty).HasContent(_ => new IndexOutOfRangeException("bar"));
+                Action ensuring = () => Ensure.ValueOf(string.Empty).HasContent(_ => new IndexOutOfRangeException("bar"));
                 ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
             }
 
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Value("hello");
+                var theEnsurable = Ensure.ValueOf("hello");
                 theEnsurable.HasContent().Should().Be(theEnsurable);
             }
         }

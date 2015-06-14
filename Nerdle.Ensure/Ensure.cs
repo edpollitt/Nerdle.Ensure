@@ -7,7 +7,7 @@ namespace Nerdle.Ensure
     [DebuggerStepThrough]
     public static class Ensure
     {
-        public static EnsurableValue<T> Value<T>(T value)
+        public static EnsurableValue<T> ValueOf<T>(T value)
         {
             return new EnsurableValue<T>(value);
         }
