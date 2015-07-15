@@ -1,0 +1,8 @@
+language: csharp
+solution: Nerdle.Ensure.sln
+install:
+  - nuget restore Nerdle.Ensure.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release Nerdle.Ensure.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Nerdle.Ensure.Tests/bin/Release/Nerdle.Ensure.Tests.dll
