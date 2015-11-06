@@ -50,8 +50,8 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.ValueOf(1).In(new[] { 1, 2, 3 });
-                theEnsurable.Not(0).Should().Be(theEnsurable);
+                var theEnsurable = Ensure.ValueOf(1);
+                theEnsurable.In(new[] { 1, 2, 3 }).Should().Be(theEnsurable);
             }
         }
 
@@ -111,8 +111,8 @@ namespace Nerdle.Ensure.Tests
             [Test]
             public void The_ensurable_is_returned()
             {
-                var theEnsurable = Ensure.Argument(1).In(new[] { 1, 2, 3 });
-                theEnsurable.Not(0).Should().Be(theEnsurable);
+                var theEnsurable = Ensure.ValueOf(1);
+                theEnsurable.In(new[] { 1, 2, 3 }).Should().Be(theEnsurable);
             }
         }
     }

@@ -57,8 +57,9 @@
     <Compile Include="When_adding_new_extension_methods.cs" />
     <Compile Include="When_creating_an_ensurable_argument.cs" />
     <Compile Include="When_creating_an_ensurable_value.cs" />
+    <Compile Include="When_ensuring_a_directory_exists.cs" />
     <Compile Include="When_ensuring_type_assignability.cs" />
-    <Compile Include="When_ensuring_a_string_has_content.cs" />
+    <Compile Include="When_ensuring_a_string_is_not_blank.cs" />
     <Compile Include="When_ensuring_between.cs" />
     <Compile Include="When_ensuring_greater_than.cs" />
     <Compile Include="When_ensuring_greater_than_or_equal_to.cs" />
