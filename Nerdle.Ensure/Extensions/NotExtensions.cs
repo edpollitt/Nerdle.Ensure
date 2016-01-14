@@ -7,7 +7,7 @@ namespace Nerdle.Ensure
     [DebuggerStepThrough]
     public static class NotExtensions
     {
-        public static Ensurable<T> Not<T>(this Ensurable<T> ensurable, T other, string exceptionMessage = null) where T : IEquatable<T>
+        public static Ensurable<T> Not<T>(this Ensurable<T> ensurable, T other, string exceptionMessage = null)
         {
             return ensurable.Satisfies(x => !EqualityComparer<T>.Default.Equals(ensurable, other), 
                 exceptionMessage ?? string.Format("Cannot be {0}.", (T)ensurable));

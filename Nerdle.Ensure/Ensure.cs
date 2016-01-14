@@ -12,6 +12,11 @@ namespace Nerdle.Ensure
             return new EnsurableValue<T>(value);
         }
 
+        public static EnsurableValue<Type> TypeOf<T>(T value)
+        {
+            return new EnsurableValue<Type>(typeof(T));
+        }
+
         public static EnsurableArgument<T> Argument<T>(Expression<Func<T>> argumentExpression)
         {
             return new EnsurableArgument<T>(argumentExpression);

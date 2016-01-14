@@ -45,6 +45,7 @@
     <Compile Include="EnsurableValue.cs" />
     <Compile Include="Ensure.cs" />
     <Compile Include="Extensions\DirectoryExistsExtensions.cs" />
+    <Compile Include="Extensions\HasAttributeExtensions.cs" />
     <Compile Include="Extensions\IsAssignableToExtensions.cs" />
     <Compile Include="Extensions\BetweenExtensions.cs" />
     <Compile Include="Extensions\GreaterThanExtensions.cs" />

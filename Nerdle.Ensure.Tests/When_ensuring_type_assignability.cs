@@ -9,6 +9,82 @@ namespace Nerdle.Ensure.Tests
     public class When_ensuring_type_assignability
     {
         [TestFixture]
+        public class On_a_type
+        {
+            [TestFixture]
+            public class When_both_types_are_classes
+            {
+                [Test]
+                public void No_exception_is_thrown_if_the_type_is_the_same()
+                {
+                    Action ensuring = () => Ensure.TypeOf(1).IsAssignableTo<int>();
+                    ensuring.ShouldNotThrow();
+                }
+
+                [Test]
+                public void No_exception_is_thrown_if_the_type_is_a_subtype()
+                {
+                    Action ensuring = () => Ensure.TypeOf(1).IsAssignableTo<ValueType>();
+                    ensuring.ShouldNotThrow();
+                }
+
+                [Test]
+                public void An_exception_is_thrown_if_the_type_is_not_the_same_or_a_subtype()
+                {
+                    Action ensuring = () => Ensure.TypeOf(1m).IsAssignableTo<int>();
+                    ensuring.ShouldThrow<Exception>();
+                }
+            }
+
+            [TestFixture]
+            public class When_the_target_type_is_an_interface
+            {
+                [Test]
+                public void No_exception_is_thrown_if_the_type_implements_the_interface()
+                {
+                    Action ensuring = () => Ensure.TypeOf(1).IsAssignableTo<IFormattable>();
+                    ensuring.ShouldNotThrow();
+                }
+
+                [Test]
+                public void An_exception_is_thrown_if_the_type_does_not_implement_the_interface()
+                {
+                    Action ensuring = () => Ensure.TypeOf(1).IsAssignableTo<IEnumerable>();
+                    ensuring.ShouldThrow<Exception>();
+                }
+            }
+
+            [Test]
+            public void The_default_exception_is_InvalidOperationException()
+            {
+                Action ensuring = () => Ensure.TypeOf(1f).IsAssignableTo<long>();
+                ensuring.ShouldThrowExactly<InvalidOperationException>()
+                    .WithMessage("Type System.Int32 is not assignable to type System.Int64.");
+            }
+
+            [Test]
+            public void A_custom_message_can_be_specified()
+            {
+                Action ensuring = () => Ensure.TypeOf(1).IsAssignableTo<double>("foo");
+                ensuring.ShouldThrowExactly<InvalidOperationException>().WithMessage("foo");
+            }
+
+            [Test]
+            public void A_custom_exception_can_be_specified()
+            {
+                Action ensuring = () => Ensure.TypeOf("hello").IsAssignableTo<double>(_ => new IndexOutOfRangeException("bar"));
+                ensuring.ShouldThrowExactly<IndexOutOfRangeException>().WithMessage("bar");
+            }
+
+            [Test]
+            public void The_ensurable_is_returned()
+            {
+                var theEnsurable = Ensure.TypeOf('#');
+                theEnsurable.IsAssignableTo<IComparable>().Should().Be(theEnsurable);
+            }
+        }
+
+        [TestFixture]
         public class On_a_value
         {
             [TestFixture]
