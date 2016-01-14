@@ -51,7 +51,8 @@
     <Compile Include="Extensions\InExtensions.cs" />
     <Compile Include="Extensions\LessThanExtensions.cs" />
     <Compile Include="Extensions\MatchesExtensions.cs" />
-    <Compile Include="Extensions\NotBlankExtensions.cs" />
+    <Compile Include="Extensions\NotNullOrEmptyExtensions.cs" />
+    <Compile Include="Extensions\NotNullOrWhiteSpaceExtensions.cs" />
     <Compile Include="Extensions\NotDefaultExtensions.cs" />
     <Compile Include="Extensions\NotEmptyExtensions.cs" />
     <Compile Include="Extensions\NotExtensions.cs" />
