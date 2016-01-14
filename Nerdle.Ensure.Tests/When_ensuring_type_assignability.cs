@@ -59,7 +59,7 @@ namespace Nerdle.Ensure.Tests
             {
                 Action ensuring = () => Ensure.TypeOf(1f).IsAssignableTo<long>();
                 ensuring.ShouldThrowExactly<InvalidOperationException>()
-                    .WithMessage("Type System.Int32 is not assignable to type System.Int64.");
+                    .WithMessage("Type System.Single is not assignable to type System.Int64.");
             }
 
             [Test]
