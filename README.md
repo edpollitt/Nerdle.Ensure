@@ -19,3 +19,7 @@ Install-Package Nerdle.Ensure
 [![Nuget](https://img.shields.io/nuget/v/Nerdle.Ensure.svg)](https://www.nuget.org/packages/Nerdle.Ensure/)
 [![Nuget](https://img.shields.io/nuget/dt/Nerdle.Ensure.svg)](https://www.nuget.org/packages/Nerdle.Ensure/)
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/edpollitt/nerdle.ensure/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
